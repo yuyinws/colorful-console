@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   future: {
-    compatibilityVersion: 4
+    compatibilityVersion: 4,
   },
   modules: [
     '@nuxt/ui',
@@ -15,6 +15,17 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       standalone: false,
-    }
-  }
+    },
+  },
+  ssr: false,
+  nitro: {
+    routeRules: {
+      '/**': {
+        headers: {
+          'Cross-Origin-Embedder-Policy': 'require-corp',
+          'Cross-Origin-Opener-Policy': 'same-origin',
+        },
+      },
+    },
+  },
 })
