@@ -25,7 +25,6 @@
     "nuxt": "^3.12.2",
     "nuxt-module-cli-shortcuts": "^0.0.4",
     "shiki": "^1.10.3",
-    "shiki-magic-move": "^0.4.3",
     "unplugin-turbo-console": "^1.8.9"
   }
 }
