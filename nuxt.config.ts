@@ -1,3 +1,5 @@
+import { env } from 'node:process'
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   future: {
@@ -16,6 +18,17 @@ export default defineNuxtConfig({
     config: {
       standalone: false,
     },
+  },
+  appConfig: {
+    __IS_DEV__: env.NODE_ENV === 'development',
+  },
+  tailwindcss: {
+    config: {
+      darkMode: 'class',
+    },
+  },
+  colorMode: {
+    classSuffix: '',
   },
   ssr: false,
   nitro: {

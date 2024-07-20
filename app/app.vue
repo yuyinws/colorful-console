@@ -1,12 +1,12 @@
 <template>
   <nuxt-layout>
     <nuxt-page />
+    <UNotifications />
   </nuxt-layout>
 </template>
 
 <style>
 body {
-  @apply h-screen;
-
+  height: 100vh;
 }
 </style>

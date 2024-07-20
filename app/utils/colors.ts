@@ -1,4 +1,4 @@
-export const textColors = [
+export const colors = [
   {
     name: 'Black',
     hex: '#000000',
