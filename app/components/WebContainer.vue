@@ -85,8 +85,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full bg-[#2e3440] border-[#2e3440] rounded-[.5rem] border-[1px] mt-5">
-    <div class="bg-[#171717] rounded-[.5rem] flex items-center justify-between">
+  <div class="w-full bg-[#2e3440] rounded-[.5rem] mt-5">
+    <div class="bg-[#171717] rounded-t-[.5rem] flex items-center justify-between">
       <div class="px-5 py-3">
         <div class="flex gap-2">
           <div class="rounded-full h-[.75rem] w-[.75rem] bg-[#ed695e]" />

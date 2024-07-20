@@ -7,14 +7,6 @@ const props = defineProps<{
 
 const renderedCode = ref('')
 
-// const rendered = await codeToHtml(props.code, {
-//   lang: 'javascript',
-//   themes: {
-//     light: 'vitesse-light',
-//     dark: 'vitesse-dark',
-//   },
-// })
-
 watchEffect(async () => {
   renderedCode.value = await codeToHtml(props.code, {
     lang: 'javascript',
