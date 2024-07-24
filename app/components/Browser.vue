@@ -35,7 +35,7 @@ function testConole() {
             size="sm"
             color="primary"
             variant="solid"
-            label="Test Console"
+            label="Test"
             :trailing="false"
             @click="testConole"
           />
@@ -43,7 +43,7 @@ function testConole() {
 
         <div class="flex items-center gap-2">
           <UIcon name="i-heroicons-light-bulb" class="w-5 h-5 text-primary" />
-          <span class="text-gray-400">Please open browser console panel first.</span>
+          <span class="text-gray-500">Please open browser console panel first.</span>
         </div>
       </div>
     </template>

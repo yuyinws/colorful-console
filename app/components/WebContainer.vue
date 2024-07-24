@@ -85,7 +85,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full bg-[#2e3440] rounded-[.5rem] mt-5">
+  <div class="max-w-3xl bg-[#2e3440] rounded-[.5rem] mt-5">
     <div class="bg-[#171717] rounded-t-[.5rem] flex items-center justify-between">
       <div class="px-5 py-3">
         <div class="flex gap-2">
@@ -113,7 +113,7 @@ onMounted(() => {
         WebContainer startup error
       </div>
 
-      <div class="w-[6rem]" />
+      <div class="w-[3rem] lg:w-[6rem]" />
     </div>
     <div ref="terminalEl" class="w-full px-4 py-2 h-[15.5rem]" />
   </div>

@@ -71,11 +71,6 @@
             <div class="font-semibold mr-5">
               Box
             </div>
-
-            <div class="flex items-center gap-1">
-              <UIcon name="i-heroicons-light-bulb" class="w-5 h-5 text-primary" />
-              <span class="text-gray-800">Browser Only</span>
-            </div>
           </div>
         </template>
 
@@ -92,9 +87,16 @@
           </div>
           <URange v-model="styleState.rounded" :max="30" />
         </div>
+
+        <template #footer>
+          <div class="flex items-center gap-1">
+            <UIcon name="i-heroicons-light-bulb" class="w-5 h-5 text-primary" />
+            <span class="text-gray-500">Browser Only</span>
+          </div>
+        </template>
       </UCard>
     </div>
-    <div class="flex-1 max-w-3xl flex flex-col gap-4">
+    <div class="flex-1 flex flex-col gap-4">
       <Terminal />
 
       <Browser />
