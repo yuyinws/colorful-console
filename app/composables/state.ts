@@ -12,6 +12,10 @@ interface StyleState {
   bgBright: boolean
   padding: number
   rounded: number
+  bold: boolean
+  italic: boolean
+  underline: boolean
+  strikethrough: boolean
 }
 
 export const styleState = useState<StyleState>('style', () => ({
@@ -21,31 +25,80 @@ export const styleState = useState<StyleState>('style', () => ({
   bgBright: false,
   padding: 0,
   rounded: 0,
+  bold: false,
+  italic: false,
+  underline: false,
+  strikethrough: false,
 }))
 
 function findColor(name: string) {
   return colors.find(color => color.name === name)
 }
 
+function formatAnsiCode(ansiCodes: string[]) {
+  let str = ' Colorful Console '
+
+  ansiCodes.forEach((code) => {
+    const [start, end] = code.split(',')
+    str = start + str + end
+  })
+
+  return `console.log('${str}')`
+}
+
 export const code = computed(() => {
-  const { textColor, backgroundColor, textBright, bgBright } = styleState.value
+  const { textColor, backgroundColor, textBright, bgBright, bold: _bold, italic: _italic, underline: _underline, strikethrough: _strikethrough } = styleState.value
   const findTextColor = findColor(textColor)
   const findBackgroundColor = findColor(backgroundColor)
 
-  let browerStyle = `color: ${findTextColor?.hex}${styleState.value.rounded ? `;border-radius: ${styleState.value.rounded}px;` : ''}${styleState.value.padding ? `;padding: ${styleState.value.padding}px;` : ''}`
+  let browerStyle = `color: ${findTextColor?.hex}${styleState.value.rounded ? `;border-radius: ${styleState.value.rounded}px` : ''}${styleState.value.padding ? `;padding: ${styleState.value.padding}px` : ''}`
   if (backgroundColor !== 'Transparent') {
-    browerStyle += `;background-color: ${findBackgroundColor?.hex};`
+    browerStyle += `;background-color: ${findBackgroundColor?.hex}`
   }
+
+  const ansiCodes: string[] = []
+
+  if (textBright) {
+    ansiCodes.push(findTextColor!.brightAnsi)
+  }
+  else {
+    ansiCodes.push(findTextColor!.ansi)
+  }
+
+  if (backgroundColor !== 'Transparent') {
+    if (bgBright) {
+      ansiCodes.push(findBackgroundColor!.bgBrightAnsi)
+    }
+    else {
+      ansiCodes.push(findBackgroundColor!.bgAnsi)
+    }
+  }
+
+  if (_bold) {
+    ansiCodes.push(bold)
+    browerStyle += ';font-weight: bold'
+  }
+
+  if (_italic) {
+    ansiCodes.push(italic)
+    browerStyle += ';font-style: italic'
+  }
+
+  if (_underline) {
+    ansiCodes.push(underline)
+    browerStyle += ';text-decoration: underline'
+  }
+
+  if (_strikethrough) {
+    ansiCodes.push(strikethrough)
+    browerStyle += ';text-decoration: line-through'
+  }
+
+  const terminalConsoleCode = formatAnsiCode(ansiCodes)
 
   const browerConsoleCode = `console.log('%c Colorful Console ', '${browerStyle}')`
 
-  let terminalStyle = `\\x1B[${textBright ? findTextColor?.brightAnsi : findTextColor?.ansi}m`
-
-  if (backgroundColor !== 'Transparent') {
-    terminalStyle += `\\x1B[${bgBright ? findBackgroundColor?.bgBrightAnsi : findBackgroundColor?.bgAnsi}m`
-  }
-
-  const terminalConsoleCode = `console.log('${terminalStyle} Colorful Console \\x1B[49m${backgroundColor === 'Transparent' ? '' : '\\x1B[39m'}')`
+  // const terminalConsoleCode = `console.log('${terminalStyle} Colorful Console \\x1B[49m${backgroundColor === 'Transparent' ? '' : '\\x1B[39m'}')`
 
   return {
     browerConsoleCode,

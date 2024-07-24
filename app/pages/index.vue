@@ -12,6 +12,47 @@
         </template>
       </ColorPicker>
 
+      <UCard :ui="cardUi">
+        <template #header>
+          <div class="flex items-center gap-2">
+            <UIcon name="i-heroicons-beaker" class="w-5 h-5" />
+            <div class="font-semibold">
+              Text Style
+            </div>
+          </div>
+        </template>
+
+        <div class="flex items-center flex-wrap gap-4">
+          <div class="flex items-center gap-2 w-[48%]">
+            <div class="text-gray-500 font-semibold">
+              Bold
+            </div>
+            <UToggle v-model="styleState.bold" />
+          </div>
+
+          <div class="flex items-center gap-2 w-[48%]">
+            <div class="text-gray-500 italic">
+              Italic
+            </div>
+            <UToggle v-model="styleState.italic" />
+          </div>
+
+          <div class="flex items-center gap-2 w-[48%]">
+            <div class="text-gray-500 underline">
+              underline
+            </div>
+            <UToggle v-model="styleState.underline" />
+          </div>
+
+          <div class="flex items-center gap-2 w-[48%]">
+            <div class="text-gray-500 line-through">
+              strikethrough
+            </div>
+            <UToggle v-model="styleState.strikethrough" />
+          </div>
+        </div>
+      </UCard>
+
       <ColorPicker type="backgroundColor">
         <template #header>
           <div class="flex items-center gap-2">
@@ -27,40 +68,30 @@
         <template #header>
           <div class="flex items-center gap-2">
             <UIcon name="i-heroicons-arrows-pointing-out" class="w-5 h-5" />
-            <div class="font-semibold">
-              Padding ({{ styleState.padding }}px)
+            <div class="font-semibold mr-5">
+              Box
+            </div>
+
+            <div class="flex items-center gap-1">
+              <UIcon name="i-heroicons-light-bulb" class="w-5 h-5 text-primary" />
+              <span class="text-gray-800">Browser Only</span>
             </div>
           </div>
         </template>
 
-        <URange v-model="styleState.padding" :max="30" />
-
-        <template #footer>
-          <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-light-bulb" class="w-5 h-5 text-primary" />
-            <span class="text-gray-400">Browser Only.</span>
+        <div class="flex items-center gap-2">
+          <div class="text-gray-500 w-[10.5rem] text-right">
+            Padding ({{ styleState.padding }}px)
           </div>
-        </template>
-      </UCard>
+          <URange v-model="styleState.padding" :max="30" />
+        </div>
 
-      <UCard :ui="cardUi">
-        <template #header>
-          <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-stop-circle" class="w-5 h-5" />
-            <div class="font-semibold">
-              Rounded ({{ styleState.rounded }}px)
-            </div>
+        <div class="mt-3 flex items-center gap-2">
+          <div class="text-gray-500 w-[10.5rem] text-right">
+            Rounded ({{ styleState.rounded }}px)
           </div>
-        </template>
-
-        <URange v-model="styleState.rounded" :max="30" />
-
-        <template #footer>
-          <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-light-bulb" class="w-5 h-5 text-primary" />
-            <span class="text-gray-400">Browser Only.</span>
-          </div>
-        </template>
+          <URange v-model="styleState.rounded" :max="30" />
+        </div>
       </UCard>
     </div>
     <div class="flex-1 max-w-3xl flex flex-col gap-4">

@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import type { WebContainer } from '#build/components'
 
-function testConsole() {
+async function testConsole() {
   webcontainerInputState.value?.write(`${code.value.terminalConsoleCode}\n`)
+}
+
+function cleanConsole() {
+  webcontainerInputState.value?.write('console.clear()\n')
 }
 
 const webcontainerRef = ref<InstanceType<typeof WebContainer> | undefined>()
@@ -20,28 +24,44 @@ const webcontainerRef = ref<InstanceType<typeof WebContainer> | undefined>()
     </template>
     <Shiki :code="code.terminalConsoleCode" />
     <template #footer>
-      <UButton
-        icon="i-heroicons-clipboard"
-        size="sm"
-        color="primary"
-        variant="solid"
-        label="Copy"
-        :trailing="false"
-        class="mr-5"
-        @click="() => {
-          handleCopy(code.terminalConsoleCode)
-        }"
-      />
-      <UButton
-        icon="i-heroicons-cog"
-        size="sm"
-        color="primary"
-        variant="solid"
-        label="Test Console"
-        :trailing="false"
-        :disabled="webcontainerRef && webcontainerRef.webcontainerStatus !== 'boot'"
-        @click="testConsole"
-      />
+      <div class="flex justify-between">
+        <div>
+          <UButton
+            icon="i-heroicons-clipboard"
+            size="sm"
+            color="primary"
+            variant="solid"
+            label="Copy"
+            :trailing="false"
+            class="mr-5"
+            @click="() => {
+              handleCopy(code.terminalConsoleCode)
+            }"
+          />
+
+          <UButton
+            icon="i-heroicons-cog"
+            size="sm"
+            color="primary"
+            variant="solid"
+            label="Test Console"
+            :trailing="false"
+            :disabled="webcontainerRef && webcontainerRef.webcontainerStatus !== 'boot'"
+            @click="testConsole"
+          />
+        </div>
+
+        <UButton
+          icon="i-heroicons-trash"
+          size="sm"
+          color="primary"
+          variant="solid"
+          label="Clean Console"
+          :trailing="false"
+          :disabled="webcontainerRef && webcontainerRef.webcontainerStatus !== 'boot'"
+          @click="cleanConsole"
+        />
+      </div>
 
       <WebContainer ref="webcontainerRef" />
     </template>

@@ -33,7 +33,7 @@ html.dark .shiki span {
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-pre {
-  overflow: auto;
+pre.shiki {
+  white-space: pre-wrap;
 }
 </style>
