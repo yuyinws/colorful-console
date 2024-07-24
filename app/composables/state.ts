@@ -17,7 +17,7 @@ interface StyleState {
 export const styleState = useState<StyleState>('style', () => ({
   textColor: 'Cyan',
   textBright: false,
-  backgroundColor: 'White',
+  backgroundColor: 'Transparent',
   bgBright: false,
   padding: 0,
   rounded: 0,
@@ -32,11 +32,20 @@ export const code = computed(() => {
   const findTextColor = findColor(textColor)
   const findBackgroundColor = findColor(backgroundColor)
 
-  const browerStyle = `color: ${findTextColor?.hex};background-color: ${findBackgroundColor?.hex}${styleState.value.rounded ? `;border-radius: ${styleState.value.rounded}px;` : ''}${styleState.value.padding ? `;padding: ${styleState.value.padding}px;` : ''}`
+  let browerStyle = `color: ${findTextColor?.hex}${styleState.value.rounded ? `;border-radius: ${styleState.value.rounded}px;` : ''}${styleState.value.padding ? `;padding: ${styleState.value.padding}px;` : ''}`
+  if (backgroundColor !== 'Transparent') {
+    browerStyle += `;background-color: ${findBackgroundColor?.hex};`
+  }
+
   const browerConsoleCode = `console.log('%c Colorful Console ', '${browerStyle}')`
 
-  const terminalStyle = `\\x1b[${textBright ? findTextColor?.brightAnsi : findTextColor?.ansi}m\\x1b[${bgBright ? findBackgroundColor?.bgBrightAnsi : findBackgroundColor?.bgAnsi}m`
-  const terminalConsoleCode = `console.log('${terminalStyle} Colorful Console \\x1B[49m\\x1B[39m')`
+  let terminalStyle = `\\x1B[${textBright ? findTextColor?.brightAnsi : findTextColor?.ansi}m`
+
+  if (backgroundColor !== 'Transparent') {
+    terminalStyle += `\\x1B[${bgBright ? findBackgroundColor?.bgBrightAnsi : findBackgroundColor?.bgAnsi}m`
+  }
+
+  const terminalConsoleCode = `console.log('${terminalStyle} Colorful Console \\x1B[49m${backgroundColor === 'Transparent' ? '' : '\\x1B[39m'}')`
 
   return {
     browerConsoleCode,

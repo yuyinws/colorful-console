@@ -104,7 +104,7 @@ onMounted(() => {
 
       <div v-else-if="webcontainerStatus === 'boot'" class="text-[#ffffffbf] text-sm">
         Powered by
-        <a href="https://webcontainer.dev" class="font-semibold" target="_blank">
+        <a href="https://webcontainers.io/" class="font-semibold" target="_blank">
           WebContainer
         </a>
       </div>

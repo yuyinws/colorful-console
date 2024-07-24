@@ -71,4 +71,12 @@ export const colors = [
     bgAnsi: 100,
     bgBrightAnsi: 47,
   },
+  {
+    name: 'Transparent',
+    hex: '',
+    ansi: 0,
+    brightAnsi: 0,
+    bgAnsi: 0,
+    bgBrightAnsi: 0,
+  },
 ]

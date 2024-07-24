@@ -2,7 +2,6 @@
 import type { WebContainer } from '#build/components'
 
 function testConsole() {
-  // const consoleCode = `console.log('${code.value.terminalConsoleCode} Colorful Console \\x1B[49m\\x1B[39m')`
   webcontainerInputState.value?.write(`${code.value.terminalConsoleCode}\n`)
 }
 
