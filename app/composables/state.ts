@@ -31,10 +31,10 @@ const defaultStyle: StyleState = {
   strikethrough: false,
 }
 
-export const styleState = useLocalStorage('style-storage', defaultStyle)
+export const styleState = useLocalStorage('style-storage', { ...defaultStyle })
 
 export function resetStyle() {
-  styleState.value = defaultStyle
+  styleState.value = { ...defaultStyle }
 }
 
 export function randomStyle() {
