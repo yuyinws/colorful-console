@@ -95,6 +95,30 @@
           </div>
         </template>
       </UCard>
+
+      <div class="flex justify-center gap-5">
+        <UButton
+          icon="i-heroicons-x-mark"
+          size="sm"
+          color="primary"
+          variant="solid"
+          label="Reset"
+          :trailing="false"
+          class="mr-5"
+          @click="resetStyle"
+        />
+
+        <UButton
+          icon="i-heroicons-arrow-path"
+          size="sm"
+          color="primary"
+          variant="solid"
+          label="Random"
+          :trailing="false"
+          class="mr-5"
+          @click="randomStyle"
+        />
+      </div>
     </div>
     <div class="flex-1 flex flex-col gap-4">
       <Terminal />

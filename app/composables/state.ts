@@ -18,7 +18,7 @@ interface StyleState {
   strikethrough: boolean
 }
 
-export const styleState = useState<StyleState>('style', () => ({
+const defaultStyle: StyleState = {
   textColor: 'Cyan',
   textBright: false,
   backgroundColor: 'Transparent',
@@ -29,7 +29,28 @@ export const styleState = useState<StyleState>('style', () => ({
   italic: false,
   underline: false,
   strikethrough: false,
-}))
+}
+
+export const styleState = useLocalStorage('style-storage', defaultStyle)
+
+export function resetStyle() {
+  styleState.value = defaultStyle
+}
+
+export function randomStyle() {
+  styleState.value = {
+    textColor: colors[Math.floor(Math.random() * colors.length)].name,
+    textBright: Math.random() < 0.5,
+    backgroundColor: colors[Math.floor(Math.random() * colors.length)].name,
+    bgBright: Math.random() < 0.5,
+    padding: Math.floor(Math.random() * 10),
+    rounded: Math.floor(Math.random() * 10),
+    bold: Math.random() < 0.5,
+    italic: Math.random() < 0.5,
+    underline: Math.random() < 0.5,
+    strikethrough: Math.random() < 0.5,
+  }
+}
 
 function findColor(name: string) {
   return colors.find(color => color.name === name)
