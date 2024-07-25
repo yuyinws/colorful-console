@@ -19,7 +19,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <pre v-html="renderedCode" />
+  <div v-html="renderedCode" />
 </template>
 
 <style>
@@ -35,5 +35,6 @@ html.dark .shiki span {
 
 pre.shiki {
   white-space: pre-wrap;
+  word-break: break-all;
 }
 </style>
