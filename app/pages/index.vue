@@ -1,59 +1,69 @@
 <template>
   <div class="flex gap-10 flex-col lg:flex-row justify-center">
     <div class="flex flex-1 flex-col gap-4 flex-shrink-0">
-      <ColorPicker type="textColor">
+      <UCard :ui="cardUi">
         <template #header>
           <div class="flex items-center gap-2">
             <UIcon name="i-fluent:color-32-light" class="w-5 h-5" />
             <div class="font-semibold">
-              Text Color
+              Text
             </div>
           </div>
         </template>
-      </ColorPicker>
+        <template #footer>
+          <div class="flex flex-wrap gap-4 justify-between">
+            <div class="flex items-center gap-2 w-[98%]">
+              <div class="text-gray-500">
+                Content
+              </div>
+              <UInput
+                v-model="styleState.content"
+                class="flex-1"
+                maxlength="40"
+              />
+            </div>
 
-      <UCard :ui="cardUi">
-        <template #header>
-          <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-beaker" class="w-5 h-5" />
-            <div class="font-semibold">
-              Text Style
+            <div class="flex items-center gap-2 w-[48%]">
+              <div class="text-gray-600/60 dark:text-gray-400/90">
+                Bright
+              </div>
+              <UToggle v-model="styleState.textBright" />
+            </div>
+
+            <div class="flex items-center gap-2 w-[48%]">
+              <div class="text-gray-500 font-semibold">
+                Bold
+              </div>
+              <UToggle v-model="styleState.bold" />
+            </div>
+
+            <div class="flex items-center gap-2 w-[48%]">
+              <div class="text-gray-500 italic">
+                Italic
+              </div>
+              <UToggle v-model="styleState.italic" />
+            </div>
+
+            <div class="flex items-center gap-2 w-[48%]">
+              <div class="text-gray-500 underline">
+                underline
+              </div>
+              <UToggle v-model="styleState.underline" />
+            </div>
+
+            <div class="flex items-center gap-2 w-[48%]">
+              <div class="text-gray-500 line-through">
+                strikethrough
+              </div>
+              <UToggle v-model="styleState.strikethrough" />
             </div>
           </div>
         </template>
 
-        <div class="flex items-center flex-wrap gap-4">
-          <div class="flex items-center gap-2 w-[48%]">
-            <div class="text-gray-500 font-semibold">
-              Bold
-            </div>
-            <UToggle v-model="styleState.bold" />
-          </div>
-
-          <div class="flex items-center gap-2 w-[48%]">
-            <div class="text-gray-500 italic">
-              Italic
-            </div>
-            <UToggle v-model="styleState.italic" />
-          </div>
-
-          <div class="flex items-center gap-2 w-[48%]">
-            <div class="text-gray-500 underline">
-              underline
-            </div>
-            <UToggle v-model="styleState.underline" />
-          </div>
-
-          <div class="flex items-center gap-2 w-[48%]">
-            <div class="text-gray-500 line-through">
-              strikethrough
-            </div>
-            <UToggle v-model="styleState.strikethrough" />
-          </div>
-        </div>
+        <ColorPicker type="textColor" />
       </UCard>
 
-      <ColorPicker type="backgroundColor">
+      <UCard :ui="cardUi">
         <template #header>
           <div class="flex items-center gap-2">
             <UIcon name="i-ion:color-fill-outline" class="w-5 h-5" />
@@ -62,7 +72,20 @@
             </div>
           </div>
         </template>
-      </ColorPicker>
+
+        <template #footer>
+          <div class="flex justify-between">
+            <div class="flex items-center gap-2">
+              <div class="text-gray-600/60 dark:text-gray-400/90">
+                Bright
+              </div>
+              <UToggle v-model="styleState.bgBright" />
+            </div>
+          </div>
+        </template>
+
+        <ColorPicker type="backgroundColor" />
+      </UCard>
 
       <UCard :ui="cardUi">
         <template #header>

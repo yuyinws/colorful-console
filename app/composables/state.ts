@@ -6,6 +6,7 @@ export const terminalState = useState<Terminal | undefined>('terminal', () => sh
 export const webcontainerInputState = useState<WritableStreamDefaultWriter<string> | undefined>('webcontainerInput', () => undefined)
 
 interface StyleState {
+  content: string
   textColor: string
   backgroundColor: string
   textBright: boolean
@@ -19,6 +20,7 @@ interface StyleState {
 }
 
 const defaultStyle: StyleState = {
+  content: 'Colorful Console',
   textColor: 'Cyan',
   textBright: false,
   backgroundColor: 'Transparent',
@@ -39,6 +41,7 @@ export function resetStyle() {
 
 export function randomStyle() {
   styleState.value = {
+    content: styleState.value.content,
     textColor: colors[Math.floor(Math.random() * colors.length)].name,
     textBright: Math.random() < 0.5,
     backgroundColor: colors[Math.floor(Math.random() * colors.length)].name,
@@ -57,7 +60,7 @@ function findColor(name: string) {
 }
 
 function formatAnsiCode(ansiCodes: string[]) {
-  let str = ' Colorful Console '
+  let str = `${styleState.value.content}`
 
   ansiCodes.forEach((code) => {
     const [start, end] = code.split(',')
@@ -117,9 +120,7 @@ export const code = computed(() => {
 
   const terminalConsoleCode = formatAnsiCode(ansiCodes)
 
-  const browerConsoleCode = `console.log('%c Colorful Console ', '${browerStyle}')`
-
-  // const terminalConsoleCode = `console.log('${terminalStyle} Colorful Console \\x1B[49m${backgroundColor === 'Transparent' ? '' : '\\x1B[39m'}')`
+  const browerConsoleCode = `console.log('%c${styleState.value.content}', '${browerStyle}')`
 
   return {
     browerConsoleCode,
