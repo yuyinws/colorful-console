@@ -27,6 +27,14 @@ export default defineNuxtConfig({
       darkMode: 'class',
     },
   },
+  app: {
+    head: {
+      title: 'Colorful Console',
+      htmlAttrs: {
+        lang: 'en',
+      },
+    },
+  },
   colorMode: {
     classSuffix: '',
   },
