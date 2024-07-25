@@ -39,7 +39,7 @@ async function init() {
     webcontainerStatus.value = 'boot'
 
     window.addEventListener('resize', () => {
-      fitAddon.fit()
+      // fitAddon.fit()
       shellProcess.resize({
         cols: terminalState.value!.cols,
         rows: terminalState.value!.rows,
@@ -85,7 +85,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="max-w-3xl bg-[#2e3440] rounded-[.5rem] mt-5">
+  <div class="w-full bg-[#2e3440] rounded-[.5rem] mt-5">
     <div class="bg-[#171717] rounded-t-[.5rem] flex items-center justify-between">
       <div class="px-5 py-3">
         <div class="flex gap-2">

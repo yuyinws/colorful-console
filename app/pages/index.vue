@@ -1,6 +1,6 @@
 <template>
   <div class="flex gap-10 flex-col lg:flex-row justify-center">
-    <div class="flex flex-col gap-4 flex-shrink-0">
+    <div class="flex flex-1 flex-col gap-4 flex-shrink-0">
       <ColorPicker type="textColor">
         <template #header>
           <div class="flex items-center gap-2">
@@ -120,7 +120,7 @@
         />
       </div>
     </div>
-    <div class="flex-1 flex flex-col gap-4">
+    <div class="w-full lg:w-[40rem] flex flex-col gap-4">
       <Terminal />
 
       <Browser />
